@@ -18,3 +18,31 @@
 #chart1{
     overflow-y: scroll !important;
 }
+
+.txt{
+    color: white;
+}
+
+.hiddenTxt{
+    display: none;
+}
+
+.showTxt{
+    display: block;
+}
+
+#piechart .txt:hover {
+    display: block;
+}
+
+.crl:hover .hiddenTxt:hover{
+    display: block !important;
+}
+
+.crl{
+    opacity: 0.5;
+}
+
+.crl:hover{
+    opacity: 1.0;
+}
