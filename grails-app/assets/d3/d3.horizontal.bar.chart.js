@@ -31,7 +31,7 @@ const build = data => {
     const innerWidth = width - margin.right - margin.left;
     const innerHeight = height - margin.top - margin.bottom;
 
-    const xScale = d3.scaleLinear()
+    const xScale = d3.scale.linear()
         .domain([0, d3.max(data, xValue)])
         .range([0, innerWidth]);
 
@@ -39,10 +39,10 @@ const build = data => {
     console.log(xScale.range());
 
     const tickFormatXAxix = num => d3.format('.2s')(num);
-    const xAxis = d3.axisBottom(xScale)
+    const xAxis = d3.axis.orient("bottom").scale(xScale)
         .tickFormat(tickFormatXAxix);
 
-    const yScale = d3.scaleBand()
+    const yScale = d3.scale.band()
         .domain(data.map(yValue))
         .range([0, innerHeight])
         .padding(0.1);
@@ -76,4 +76,70 @@ const rawData = [{'country': 'a', 'population': 123, 'color' : 'steelblue'}, {'c
     'population': 543,
     'color' : 'yellow'
 }, {'country': 'd', 'population': 12, 'color' : 'green'}];
-build(rawData);
+///build(rawData);
+
+const nvBarChart = data =>{
+    var chart;
+    nv.addGraph(function() {
+        console.log(nv.models);
+        chart = nv.models.multiBarHorizontalChart()
+            .x(function(d) { return d.label })
+            .y(function(d) { return d.value })
+            .yErr(function(d) { return [-Math.abs(d.value * Math.random() * 0.3), Math.abs(d.value * Math.random() * 0.3)] })
+            .barColor(d3.scale.category20().range())
+            .duration(250)
+            .margin({left: 100})
+            .stacked(true);
+
+        chart.yAxis.tickFormat(d3.format(',.2f'));
+
+        chart.yAxis.axisLabel('Y Axis');
+        chart.xAxis.axisLabel('X Axis').axisLabelDistance(20);
+
+        d3.select('#chartnv')
+            .datum(data)
+            .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        chart.dispatch.on('stateChange', function(e) { nv.log('New State:', JSON.stringify(e)); });
+        chart.state.dispatch.on('change', function(state){
+            nv.log('state', JSON.stringify(state));
+        });
+        return chart;
+    });
+
+};
+
+var long_short_data = [
+    {
+        key: 'Nepal',
+        values: [
+            {
+                "label" : "populattion" ,
+                "value" : 123
+            }
+        ]
+    },
+    {
+        key: 'India',
+        values: [
+            {
+                "label" : "populattion" ,
+                "value" : 234
+            }
+        ]
+    },
+    {
+        key: 'China',
+        values: [
+            {
+                "label" : "populattion" ,
+                "value" : 432
+            }
+        ]
+    },
+];
+
+
+nvBarChart(long_short_data);

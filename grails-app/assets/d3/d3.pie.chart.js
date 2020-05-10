@@ -27,7 +27,7 @@ const pieChart = data => {
     let innerHeight = height - padding.top - padding.bottom;
 
 
-    const xScale = d3.scaleLinear()
+    const xScale = d3.scale.linear()
         .domain([0, d3.max(data, xValue)])
         .range([padding.right, width - padding.right]);
 

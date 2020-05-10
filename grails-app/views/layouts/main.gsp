@@ -10,6 +10,7 @@
     <asset:link rel="icon" href="favicon.ico" type="image/x-ico" />
 
     <asset:stylesheet src="application.css"/>
+    <asset:stylesheet src="nv.d3.css"/>
     <asset:stylesheet src="d3.chart.css"/>
 
     <g:layoutHead/>
@@ -46,7 +47,9 @@
     </div>
 
     <asset:javascript src="application.js"/>
-    <asset:javascript src="d3.5.16.0.min.js"/>
+    %{--<asset:javascript src="d3.5.16.0.min.js"/>--}%
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js" charset="utf-8"></script>
+    <asset:javascript src="nv.d3.js"/>
     <asset:javascript src="d3.horizontal.bar.chart.js"/>
     <asset:javascript src="d3.pie.chart.js"/>
 
