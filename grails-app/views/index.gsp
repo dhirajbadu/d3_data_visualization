@@ -8,14 +8,14 @@
    <div class="container">
        <div class="content">
            <div class="row">
-               <div class="col-lg-6">
+               %{--<div class="col-lg-6">
                    <h3>Bar Chart</h3>
                    <svg id="chart">
 
                    </svg>
                </div>
-
-               <div class="col-lg-6">
+--}%
+               <div class="col-lg-12">
                    <h3>Bar Chart Nv</h3>
                    <svg id="chartnv" height="500">
 
